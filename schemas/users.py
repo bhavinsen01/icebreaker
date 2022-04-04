@@ -5,7 +5,7 @@ from pydantic import EmailStr
 class UserCreate(BaseModel):
     first_name: str
     last_name: str
-    mobile: int
+    mobile: str
     username: str
     email: EmailStr
     password: str
@@ -19,7 +19,7 @@ class ShowUser(BaseModel):
     organization: str
     first_name: str
     last_name: str
-    mobile: int
+    mobile: str
 
     class Config:
         orm_mode = True
