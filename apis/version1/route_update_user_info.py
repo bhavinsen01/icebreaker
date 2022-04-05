@@ -9,7 +9,7 @@ from db.session import engine
 router = APIRouter()
 
 
-@router.put("/{user_id}", response_model=ShowUser)
+@router.patch("/{user_id}", response_model=ShowUser)
 def update_user(user_id: int, user: UpdateUser):
     with Session(engine) as session:
         db_user = session.get(User, user_id)
