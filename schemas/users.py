@@ -1,3 +1,4 @@
+from typing import Optional
 from pydantic import BaseModel
 from pydantic import EmailStr
 
@@ -23,3 +24,13 @@ class ShowUser(BaseModel):
 
     class Config:
         orm_mode = True
+
+
+class UpdateUser(BaseModel):
+    first_name: Optional[str] = None
+    last_name: Optional[str] = None
+    mobile: Optional[str] = None
+    username: Optional[str] = None
+    email: Optional[EmailStr] = None
+    password: Optional[str] = None
+    organization: Optional[str] = None
