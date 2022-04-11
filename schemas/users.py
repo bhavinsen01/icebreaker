@@ -6,7 +6,7 @@ from pydantic import EmailStr
 class UserCreate(BaseModel):
     first_name: str
     last_name: str
-    mobile: str
+    mobile: Optional[str] = "0123456789"
     username: str
     email: EmailStr
     password: str
@@ -29,7 +29,7 @@ class ShowUser(BaseModel):
 class UpdateUser(BaseModel):
     first_name: Optional[str] = None
     last_name: Optional[str] = None
-    mobile: Optional[str] = None
+    mobile: Optional[str] = "0123456789"
     username: Optional[str] = None
     email: Optional[EmailStr] = None
     password: Optional[str] = None

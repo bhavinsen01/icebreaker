@@ -19,9 +19,8 @@ def create_new_vendor(vendor: VendorCreate, db: Session):
     db.refresh(vendor)
     return vendor
 
-def get_vendor_by_email(email: str, db: Session):
-    vendor = db.query(Vendor).filter(Vendor.email == email).first()
-    return vendor
+def get_vendor_by_email(db: Session, email: str):
+    return db.query(Vendor).filter(Vendor.email == email).first()
 
 def create_vendor_company(vendor_company: VendorCompanyCreate, db:Session):
     vendor_company = VendorCompany(
@@ -42,6 +41,6 @@ def create_vendor_company(vendor_company: VendorCompanyCreate, db:Session):
     db.refresh(vendor_company)
     return vendor_company
 
-def get_vendor_company_by_email(email: str, db: Session):
-    vendor_company = db.query(VendorCompany).filter(VendorCompany.email == email).first()
-    return vendor_company
+def get_vendor_company_by_email(db: Session, email: str):
+    return db.query(VendorCompany).filter(VendorCompany.email == email).first() 
+
