@@ -20,15 +20,15 @@ def get_user(user_id: int):
     return postdb[user]
 
 @router.post("/post")
-def add_details(user: User):
+def add_user(user: User):
     postdb.append(user.dict())
     return postdb[-1]
 
-@router.put("/items/{item_id}", response_model=User)
-async def update_item(item_id: int, item: User):
-    update_item_encoded = jsonable_encoder(item)
-    postdb[item_id - 1] = update_item_encoded
-    return update_item_encoded
+@router.put("/update/{user_id}", response_model=User)
+async def update_user(user_id: int, item: User):
+    update_user_encoded = jsonable_encoder(item)
+    postdb[user_id - 1] = update_user_encoded
+    return update_user_encoded
 
 @router.delete("/delete/{post_id}")
 def delete_user(user_id: int):
