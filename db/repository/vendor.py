@@ -1,3 +1,4 @@
+from pydantic import EmailStr
 from core.hashing import Hasher
 from db.models.vendor import Vendor, VendorCompany
 from schemas.vendor import VendorCreate, VendorCompanyCreate
@@ -9,6 +10,7 @@ def create_new_vendor(vendor: VendorCreate, db: Session):
         first_name = vendor.first_name,
         last_name = vendor.last_name,
         email = vendor.email,
+        username = vendor.username,
         hashed_password=Hasher.get_password_hash(vendor.password),
         company_id = vendor.company_id,
         roll = vendor.roll,
@@ -44,3 +46,6 @@ def create_vendor_company(vendor_company: VendorCompanyCreate, db:Session):
 def get_vendor_company_by_email(db: Session, email: str):
     return db.query(VendorCompany).filter(VendorCompany.email == email).first() 
 
+def get_vendor(username: str, db: Session):
+    user = db.query(Vendor).filter(Vendor.username == username).first()
+    return user

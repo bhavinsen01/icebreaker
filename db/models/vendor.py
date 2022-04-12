@@ -11,6 +11,7 @@ class Vendor(Base):
     first_name = Column(String, nullable=False)
     last_name = Column(String, nullable=False)
     email = Column(String, nullable=False, unique=True)
+    username = Column(String, unique=True, nullable=False)
     hashed_password = Column(String, nullable=False)
     company_id = Column(Integer, ForeignKey("vendorcompany.id"))
     roll = Column(Integer)

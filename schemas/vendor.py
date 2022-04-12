@@ -7,6 +7,7 @@ class VendorCreate(BaseModel):
     first_name: str
     last_name: str
     email: EmailStr
+    username: str
     password: str
     company_id: int
     roll:int
@@ -16,6 +17,7 @@ class ShowVendor(BaseModel):
     first_name: str
     last_name: str
     email: EmailStr
+    username: str
     is_active: bool
     company_id: int
     roll:int
@@ -29,6 +31,7 @@ class UpdateVendor(BaseModel):
     first_name: Optional[str] = None
     last_name: Optional[str] = None
     email: Optional[EmailStr] = None
+    username: Optional[str] = None
     password: Optional[str] = None
     company_id: Optional[int] = None
     roll: Optional[int] = None
