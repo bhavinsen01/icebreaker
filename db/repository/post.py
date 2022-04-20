@@ -1,28 +1,31 @@
-from db.models.post_content import PostContents, SubCategory
-from schemas.post_contents import PostCreate, SubCategories
+from db.models.post_content import Product
+from schemas.post_contents import CreateProduct
 from sqlalchemy.orm import Session
 
-def create_new_post(post: PostCreate, db: Session):
-    post = PostContents(
+def create_new_post(post: CreateProduct, db: Session):
+    post = Product(
         sku = post.sku,
-        url = post.url,
-        service_name = post.service_name,
-        service_short_description = post.service_short_description,
+        category_id = post.category_id,
+        model = post.model,
+        name = post.name,
+        seo_title = post.seo_title,
+        short_description = post.short_description,
+        seo_description = post.seo_description,
+        no_price_no_stock = post.no_price_no_stock,
         price = post.price,
-        availibility = post.availibility,
-        post_category = post.post_category
+        sort_priority = post.sort_priority,
+        # image = post.image,
+        content = post.content,
+        disabled_by_vendoer = post.disabled_by_vendoer,
+        disabled_by_admin = post.disabled_by_admin,
+        require_user_login = post.require_user_login,
+        # vendor_member_id = post.vendor_member_id,
+        # vendor_company_id = post.vendor_company_id,
+        created_at = post.created_at,
+        content_updated_at = post.content_updated_at,
+        popularity = post.popularity
     )
     db.add(post)
     db.commit()
     db.refresh(post)
     return post
-
-def create_sub_category(sub_category_types: SubCategories, db: Session):
-    print("======", sub_category_types.sub_category_title)
-    sub_category = SubCategory(
-        sub_category_name = sub_category_types.sub_category_title
-    )
-    db.add(sub_category)
-    db.commit()
-    db.refresh(sub_category)
-    return sub_category

@@ -14,6 +14,7 @@ def create_new_vendor(vendor: VendorCreate, db: Session):
         hashed_password=Hasher.get_password_hash(vendor.password),
         company_id = vendor.company_id,
         roll = vendor.roll,
+        created_at= vendor.created_at,
         is_active = True
     )
     db.add(vendor)
@@ -26,17 +27,21 @@ def get_vendor_by_email(db: Session, email: str):
 
 def create_vendor_company(vendor_company: VendorCompanyCreate, db:Session):
     vendor_company = VendorCompany(
-        company_name = vendor_company.company_name,
+        name = vendor_company.name,
         tel = vendor_company.tel,
         email = vendor_company.email,
         postal = vendor_company.postal,
         pref = vendor_company.pref,
         city = vendor_company.city,
         address = vendor_company.address,
-        contact1 = vendor_company.contact1,
-        contact2 = vendor_company.contact2,
-        contact3 = vendor_company.contact3,
-        classification1 = vendor_company.classification1
+        line_url = vendor_company.line_url,
+        rating = vendor_company.rating,
+        disabled = vendor_company.disabled,
+        business_hours_from = vendor_company.business_hours_from,
+        business_hours_to = vendor_company.business_hours_to,
+        business_title = vendor_company.business_title,
+        busienss_description = vendor_company.busienss_description,
+        last_accessed = vendor_company.last_accessed,
     )
     db.add(vendor_company)
     db.commit()

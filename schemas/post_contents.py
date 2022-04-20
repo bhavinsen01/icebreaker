@@ -1,14 +1,28 @@
-from pydantic import BaseModel, HttpUrl
+from datetime import datetime
+from fastapi import UploadFile
+from pydantic import BaseModel
 
 
-class PostCreate(BaseModel):
+class CreateProduct(BaseModel):
     sku: str
-    url: HttpUrl
-    service_name: str
-    service_short_description: str
+    category_id: int
+    model: str
+    name: str
+    seo_title: str
+    short_description: str
+    seo_description: str
+    no_price_no_stock: bool
     price: int
-    availibility: str
-    post_category: str
+    sort_priority: int = 0
+    content: str
+    disabled_by_vendoer: bool
+    disabled_by_admin: bool
+    require_user_login: bool
+    # vendor_member_id: int
+    # vendor_company_id: int
+    created_at: datetime
+    content_updated_at: datetime
+    popularity: int
 
-class SubCategories(BaseModel):
-    sub_category_title: str
+# class UploadImages(BaseModel):
+#     image: UploadFile

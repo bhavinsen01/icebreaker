@@ -1,7 +1,7 @@
 from typing import Optional
 from pydantic import BaseModel
 from pydantic import EmailStr
-
+from datetime import datetime
 
 class VendorCreate(BaseModel):
     first_name: str
@@ -11,6 +11,7 @@ class VendorCreate(BaseModel):
     password: str
     company_id: int
     roll:int
+    created_at: datetime
 
 
 class ShowVendor(BaseModel):
@@ -21,6 +22,7 @@ class ShowVendor(BaseModel):
     is_active: bool
     company_id: int
     roll:int
+    created_at: datetime
 
 
     class Config:
@@ -38,44 +40,56 @@ class UpdateVendor(BaseModel):
 
 
 class VendorCompanyCreate(BaseModel):
-    company_name: str
+    name: str
     tel: int
     email: EmailStr
-    postal: int
+    postal: str
     pref: str
     city: str
     address: str
-    contact1: str
-    contact2: str
-    contact3: str
-    classification1: int
+    line_url: str
+    rating: str
+    disabled: bool
+    business_hours_from: str
+    business_hours_to: str
+    business_title: str
+    busienss_description: str
+    last_accessed: datetime
 
 class ShowVendorCompany(BaseModel):
-    company_name: str
+    name: str
     tel: int
     email: EmailStr
-    postal: int
+    postal: str
     pref: str
     city: str
     address: str
-    contact1: str
-    contact2: str
-    contact3: str
-    classification1: int
+    line_url: str
+    rating: str
+    disabled: bool
+    business_hours_from: str
+    business_hours_to: str
+    business_title: str
+    busienss_description: str
+    last_accessed: datetime
 
     class Config:
         orm_mode = True
 
 
 class VendorCompanyUpdate(BaseModel):
-    company_name: Optional[str] = None
+    name: Optional[str] = None
     tel: Optional[int] = None
     email: Optional[EmailStr] = None
-    postal: Optional[int] = None
+    postal: Optional[str] = None
     pref: Optional[str] = None
     city: Optional[str] = None
     address: Optional[str] = None
-    contact1: Optional[str] = None
-    contact2: Optional[str] = None
-    contact3: Optional[str] = None
-    classification1: Optional[int] = None
+    line_url: Optional[str] = None
+    rating: Optional[str] = None
+    disabled: Optional[bool] = False
+    business_hours_from: Optional[str] = None
+    business_hours_to: Optional[str] = None
+    business_title: Optional[str] = None
+    busienss_description: Optional[str] = None
+    last_accessed: Optional[datetime] = None
