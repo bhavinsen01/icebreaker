@@ -9,7 +9,7 @@ class VendorCreate(BaseModel):
     email: EmailStr
     username: str
     password: str
-    company_id: int
+    vendor_company_id: int
     roll:int
     created_at: datetime
 
@@ -20,7 +20,7 @@ class ShowVendor(BaseModel):
     email: EmailStr
     username: str
     is_active: bool
-    company_id: int
+    vendor_company_id: int
     roll:int
     created_at: datetime
 
@@ -35,7 +35,7 @@ class UpdateVendor(BaseModel):
     email: Optional[EmailStr] = None
     username: Optional[str] = None
     password: Optional[str] = None
-    company_id: Optional[int] = None
+    vendor_company_id: Optional[int] = None
     roll: Optional[int] = None
 
 
@@ -55,6 +55,7 @@ class VendorCompanyCreate(BaseModel):
     business_title: str
     busienss_description: str
     last_accessed: datetime
+    created_at: datetime
 
 class ShowVendorCompany(BaseModel):
     name: str
@@ -72,6 +73,7 @@ class ShowVendorCompany(BaseModel):
     business_title: str
     busienss_description: str
     last_accessed: datetime
+    created_at: datetime
 
     class Config:
         orm_mode = True

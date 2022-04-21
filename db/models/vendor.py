@@ -39,5 +39,6 @@ class VendorCompany(Base):
     business_title = Column(String, nullable=False)
     busienss_description = Column(String, nullable=False)
     last_accessed = Column(DateTime, default=datetime.datetime)
+    created_at = Column(DateTime)
 
     vendor_comapny = relationship("Vendor", back_populates="vendor")

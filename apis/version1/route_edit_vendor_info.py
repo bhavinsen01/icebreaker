@@ -24,10 +24,10 @@ def update_vendor(vendor_id: int, vendor: UpdateVendor):
         return db_vendor
 
 
-@router.patch("/company/{company_id}", response_model=ShowVendorCompany)
-def update_vendor(company_id: int, vendor_company: VendorCompanyUpdate):
+@router.patch("/company/{vendor_company_id}", response_model=ShowVendorCompany)
+def update_vendor(vendor_company_id: int, vendor_company: VendorCompanyUpdate):
     with Session(engine) as session:
-        db_company = session.get(VendorCompany, company_id)
+        db_company = session.get(VendorCompany, vendor_company_id)
         if not db_company:
             raise HTTPException(status_code=404, detail="Vendor not found")
         company_update = vendor_company.dict(exclude_unset=True)
