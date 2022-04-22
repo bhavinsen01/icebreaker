@@ -1,6 +1,6 @@
 from core.hashing import Hasher
-from db.models.users import User
-from schemas.users import UserCreate
+from db.models.users import User, SortOption
+from schemas.users import UserCreate, CreataSortOption
 from sqlalchemy.orm import Session
 
 
@@ -40,3 +40,18 @@ def create_new_user(user: UserCreate, db: Session):
 def get_user_by_email(email: str, db: Session):
     user = db.query(User).filter(User.email == email).first()
     return user
+
+def create_sort_option(sortoption: CreataSortOption, db: Session):
+    sortoption = SortOption(
+        sort_type = sortoption.sort_type
+    )
+    db.add(sortoption)
+    db.commit()
+    db.refresh(sortoption)
+    return sortoption
+
+def get_sort_option_by_id(sort_option_id: int, db: Session):
+    return db.query(SortOption).filter(SortOption.id == sort_option_id).first()
+
+def get_sort_options(db: Session, skip: int = 0, limit: int = 100):
+    return db.query(SortOption).offset(skip).limit(limit).all()

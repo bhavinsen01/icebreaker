@@ -1,8 +1,5 @@
 from db.base_class import Base
-from sqlalchemy import Boolean
-from sqlalchemy import Column
-from sqlalchemy import Integer
-from sqlalchemy import String, DateTime
+from sqlalchemy import Boolean, Column, Integer, String, DateTime
 from sqlalchemy.orm import relationship
 import datetime
 
@@ -33,3 +30,7 @@ class User(Base):
     is_active = Column(Boolean(), default=True)
     is_superuser = Column(Boolean(), default=False)
     
+
+class SortOption(Base):
+    id = Column(Integer, primary_key=True, index=True)
+    sort_type = Column(String, nullable=False)

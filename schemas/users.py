@@ -78,3 +78,15 @@ class UpdateUser(BaseModel):
     line_id: Optional[str] = None
     line_pic_url: Optional[str] = None
     line_name: Optional[str] = None
+
+class CreataSortOption(BaseModel):
+    sort_type: str
+
+class ShowSortOption(BaseModel):
+    sort_type: str
+
+    class Config:
+        orm_mode = True
+
+class UpdateSortOption(BaseModel):
+    sort_type: Optional[str] = None

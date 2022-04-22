@@ -1,8 +1,8 @@
 from db.models.post_content import Product, CategoryAttribute, Category
-from schemas.post_contents import CreateProduct, CreateCategoryAttribute, CreateCategory
+from schemas.post_contents import CreateProduct, CreateCategoryAttribute, CreateCategory, UploadImages
 from sqlalchemy.orm import Session
 
-def create_new_post(post: CreateProduct, files, db: Session):
+def create_new_post(post: CreateProduct, files: UploadImages, db: Session):
     post = Product(
         sku = post.sku,
         category_id = post.category_id,
@@ -30,6 +30,9 @@ def create_new_post(post: CreateProduct, files, db: Session):
     db.refresh(post)
     return post
 
+def get_product_by_id(product_id: int, db: Session):
+    return db.query(Product).filter(Product.id == product_id).first()
+
 def creata_category(category: CreateCategory, db: Session):
     category= Category(
         name=category.name
@@ -38,6 +41,12 @@ def creata_category(category: CreateCategory, db: Session):
     db.commit()
     db.refresh(category)
     return category
+
+def get_category_by_id(category_id: int, db:Session):
+    return db.query(Category).filter(Category.id == category_id).first()
+
+def get_categories(db: Session, skip: int = 0, limit: int = 100):
+    return db.query(Category).offset(skip).limit(limit).all()
 
 
 def create_category_attribute(categoryattr: CreateCategoryAttribute, db: Session):
@@ -61,3 +70,9 @@ def create_category_attribute(categoryattr: CreateCategoryAttribute, db: Session
     db.commit()
     db.refresh(categoryattr)
     return categoryattr
+
+def get_categoryattr_by_id(categoryattr_id: int, db:Session):
+    return db.query(CategoryAttribute).filter(CategoryAttribute.id == categoryattr_id).first()
+
+def get_categoryattrs(db: Session, skip: int = 0, limit: int = 100):
+    return db.query(CategoryAttribute).offset(skip).limit(limit).all()
