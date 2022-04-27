@@ -95,3 +95,31 @@ class VendorCompanyUpdate(BaseModel):
     business_title: Optional[str] = None
     busienss_description: Optional[str] = None
     last_accessed: Optional[datetime] = None
+
+
+class CreateVendorNotification(BaseModel):
+    vendor_id: int
+    title: str
+    notification: str
+    checked: bool
+    created_at: datetime
+    checked_at: datetime
+
+class ShowVendorNotification(BaseModel):
+    vendor_id: int
+    title: str
+    notification: str
+    checked: bool
+    created_at: datetime
+    checked_at: datetime
+
+    class Config:
+        orm_mode = True
+
+class UpdateVendorNotification(BaseModel):
+    vendor_id: Optional[int] = None
+    title: Optional[str] = None
+    notification: Optional[str] = None
+    checked: Optional[bool] = None
+    created_at: Optional[datetime] = None
+    checked_at: Optional[datetime] = None

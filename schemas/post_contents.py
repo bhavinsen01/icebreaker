@@ -28,7 +28,7 @@ class CreateProduct(BaseModel):
 class UploadImages(BaseModel):
     image: UploadFile
 
-class ShowProduct(BaseModel):
+class UpdateProduct(BaseModel):
     sku: str
     category_id: int
     model: str
@@ -49,12 +49,6 @@ class ShowProduct(BaseModel):
     content_updated_at: datetime 
     popularity: int
     # image: UploadImages
-
-    # class UploadImages(BaseModel):
-    #     image: Optional[UploadFile] = UploadImages
-
-    class Config:
-        orm_mode = True
 
 class CreateCategory(BaseModel):
     name: str

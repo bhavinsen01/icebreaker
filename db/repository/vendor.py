@@ -1,6 +1,6 @@
 from core.hashing import Hasher
-from db.models.vendor import Vendor, VendorCompany
-from schemas.vendor import VendorCreate, VendorCompanyCreate
+from db.models.vendor import Vendor, VendorCompany, VendorNotification
+from schemas.vendor import CreateVendorNotification, VendorCreate, VendorCompanyCreate
 from sqlalchemy.orm import Session
 
 
@@ -66,3 +66,24 @@ def get_vendor_company_by_id(vendor_company_id: int, db: Session):
 
 def get_vendor_companies(db: Session, skip: int = 0, limit: int = 100):
     return db.query(VendorCompany).offset(skip).limit(limit).all()
+
+
+def create_vendor_notification(vendor_notification: CreateVendorNotification, db: Session):
+    vendor_notification = VendorNotification(
+        vendor_id= vendor_notification.vendor_id,
+        title = vendor_notification.title,
+        notification = vendor_notification.notification,
+        checked = vendor_notification.checked,
+        created_at = vendor_notification.created_at,
+        checked_at = vendor_notification.checked_at
+    )
+    db.add(vendor_notification)
+    db.commit()
+    db.refresh(vendor_notification)
+    return vendor_notification
+
+def get_vendor_notification_by_id(vendor_notification_id: int, db:Session):
+    return db.query(VendorNotification).filter(VendorNotification.id == vendor_notification_id).first()
+
+def get_vendor_notifications(db: Session, skip: int = 0, limit: int = 100):
+    return db.query(VendorNotification).offset(skip).limit(limit).all()

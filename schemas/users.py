@@ -19,13 +19,13 @@ class UserCreate(BaseModel):
     # interested_category_id_2: Optional[int] = None
     # sort_option_id: Optional[int] = 0
     device: Optional[int] = None
-    last_accessed: Optional[datetime] = None
-    line_access_token: Optional[str] = None
-    line_refresh_token: Optional[str] = None
-    line_id: Optional[str] = None
-    line_pic_url: Optional[str] = None
-    line_name: Optional[str] = None
-    created_at: datetime
+    # last_accessed: Optional[datetime] = None
+    # line_access_token: Optional[str] = None
+    # line_refresh_token: Optional[str] = None
+    # line_id: Optional[str] = None
+    # line_pic_url: Optional[str] = None
+    # line_name: Optional[str] = None
+    # created_at: datetime
 
 
 class ShowUser(BaseModel):
@@ -43,14 +43,14 @@ class ShowUser(BaseModel):
     # interested_category_id_2: int
     # sort_option_id: int
     device: int
-    last_accessed: datetime
-    line_access_token: str
-    line_refresh_token: str
-    line_id: str
-    line_pic_url: str
-    line_name: str
-    created_at: datetime
-    is_active: bool
+    # last_accessed: datetime
+    # line_access_token: str
+    # line_refresh_token: str
+    # line_id: str
+    # line_pic_url: str
+    # line_name: str
+    # created_at: datetime
+    # is_active: bool
 
     class Config:
         orm_mode = True
@@ -72,12 +72,12 @@ class UpdateUser(BaseModel):
     # interested_category_id_2: Optional[int] = None
     # sort_option_id: Optional[int] = None
     device: Optional[int] = None
-    last_accessed: Optional[datetime] = None
-    line_access_token: Optional[str] = None
-    line_refresh_token: Optional[str] = None
-    line_id: Optional[str] = None
-    line_pic_url: Optional[str] = None
-    line_name: Optional[str] = None
+    # last_accessed: Optional[datetime] = None
+    # line_access_token: Optional[str] = None
+    # line_refresh_token: Optional[str] = None
+    # line_id: Optional[str] = None
+    # line_pic_url: Optional[str] = None
+    # line_name: Optional[str] = None
 
 class CreataSortOption(BaseModel):
     sort_type: str

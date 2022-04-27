@@ -33,6 +33,9 @@ def create_new_post(post: CreateProduct, files: UploadImages, db: Session):
 def get_product_by_id(product_id: int, db: Session):
     return db.query(Product).filter(Product.id == product_id).first()
 
+def get_products(db: Session, skip: int = 0, limit: int = 100):
+    return db.query(Product).offset(skip).limit(limit).all()
+
 def creata_category(category: CreateCategory, db: Session):
     category= Category(
         name=category.name

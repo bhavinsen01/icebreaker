@@ -42,3 +42,13 @@ class VendorCompany(Base):
     created_at = Column(DateTime)
 
     vendor_comapny = relationship("Vendor", back_populates="vendor")
+
+class VendorNotification(Base):
+    __tablename__ = "vendornotification"
+    id = Column(Integer, primary_key=True, index=True)
+    vendor_id = Column(Integer)
+    title = Column(String, nullable=False)
+    notification = Column(String, nullable=False)
+    checked = Column(Boolean)
+    created_at = Column(DateTime)
+    checked_at = Column(DateTime)
