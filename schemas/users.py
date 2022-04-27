@@ -1,7 +1,6 @@
 from typing import Optional
 from pydantic import BaseModel
 from pydantic import EmailStr
-from datetime import datetime
 
 class UserCreate(BaseModel):
     first_name: str
@@ -22,9 +21,9 @@ class UserCreate(BaseModel):
     # last_accessed: Optional[datetime] = None
     # line_access_token: Optional[str] = None
     # line_refresh_token: Optional[str] = None
-    # line_id: Optional[str] = None
-    # line_pic_url: Optional[str] = None
-    # line_name: Optional[str] = None
+    line_id: Optional[str] = None
+    line_pic_url: Optional[str] = None
+    line_name: Optional[str] = None
     # created_at: datetime
 
 
@@ -46,9 +45,9 @@ class ShowUser(BaseModel):
     # last_accessed: datetime
     # line_access_token: str
     # line_refresh_token: str
-    # line_id: str
-    # line_pic_url: str
-    # line_name: str
+    line_id: str
+    line_pic_url: str
+    line_name: str
     # created_at: datetime
     # is_active: bool
 
@@ -75,9 +74,9 @@ class UpdateUser(BaseModel):
     # last_accessed: Optional[datetime] = None
     # line_access_token: Optional[str] = None
     # line_refresh_token: Optional[str] = None
-    # line_id: Optional[str] = None
-    # line_pic_url: Optional[str] = None
-    # line_name: Optional[str] = None
+    line_id: Optional[str] = None
+    line_pic_url: Optional[str] = None
+    line_name: Optional[str] = None
 
 class CreataSortOption(BaseModel):
     sort_type: str
