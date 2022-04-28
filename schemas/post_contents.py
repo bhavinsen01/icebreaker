@@ -54,6 +54,7 @@ class CreateCategory(BaseModel):
     name: str
 
 class ShowCategory(BaseModel):
+    id: int
     name: str
 
     class Config:
@@ -79,6 +80,7 @@ class CreateCategoryAttribute(BaseModel):
     option10: Optional[str] = None
 
 class ShowCategoryAttribute(BaseModel):
+    id: int
     # category_id: int
     title: str
     description: str

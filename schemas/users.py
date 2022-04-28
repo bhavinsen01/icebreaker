@@ -28,6 +28,7 @@ class UserCreate(BaseModel):
 
 
 class ShowUser(BaseModel):
+    id: int
     username: str
     email: EmailStr
     organization: str
@@ -82,6 +83,7 @@ class CreataSortOption(BaseModel):
     sort_type: str
 
 class ShowSortOption(BaseModel):
+    id: int
     sort_type: str
 
     class Config:

@@ -9,6 +9,7 @@ class CreateAdminMember(BaseModel):
     role: int
 
 class ShowAdminMember(BaseModel):
+    id: int
     first_name: str
     last_name: str
     role: int
@@ -31,6 +32,7 @@ class CreateAdminNotification(BaseModel):
     checked_at: datetime
 
 class ShowAdminNotification(BaseModel):
+    id: int
     admin_id: int
     title: str
     notification: str

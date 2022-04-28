@@ -15,6 +15,7 @@ class VendorCreate(BaseModel):
 
 
 class ShowVendor(BaseModel):
+    id: int
     first_name: str
     last_name: str
     email: EmailStr
@@ -58,6 +59,7 @@ class VendorCompanyCreate(BaseModel):
     created_at: datetime
 
 class ShowVendorCompany(BaseModel):
+    id: int
     name: str
     tel: int
     email: EmailStr
@@ -106,6 +108,7 @@ class CreateVendorNotification(BaseModel):
     checked_at: datetime
 
 class ShowVendorNotification(BaseModel):
+    id: int
     vendor_id: int
     title: str
     notification: str
