@@ -1,4 +1,4 @@
-from db.repository.login import get_user_by_email, get_user_by_id, get_users
+from db.repository.login import get_user_by_email, get_user_by_id, get_users, get_user_by_mobile
 from db.repository.users import create_new_user, create_sort_option, get_sort_option_by_id, get_sort_options
 from db.session import get_db, engine
 from fastapi import APIRouter, HTTPException
@@ -16,6 +16,9 @@ def create_user(user: UserCreate, db: Session = Depends(get_db)):
     db_user = get_user_by_email(db=db, email=user.email)
     if db_user:
         raise HTTPException(status_code=400, detail="Email already registered")
+    db_user_mobile = get_user_by_mobile(db=db, mobile=user.mobile)
+    if db_user_mobile:
+        raise HTTPException(status_code=400, detail="Mobile number already registered")
     user = create_new_user(user=user, db=db)
     return user
 
