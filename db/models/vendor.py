@@ -16,7 +16,7 @@ class Vendor(Base):
     hashed_password = Column(String, nullable=False)
     vendor_company_id = Column(Integer, ForeignKey("vendorcompany.id"))
     roll = Column(Integer)
-    created_at = Column(DateTime)
+    # created_at = Column(DateTime)
     is_active = Column(Boolean(), default=True)
 
     vendor = relationship("VendorCompany", back_populates="vendor_comapny")
@@ -38,8 +38,8 @@ class VendorCompany(Base):
     business_hours_to = Column(String, nullable=False)
     business_title = Column(String, nullable=False)
     busienss_description = Column(String, nullable=False)
-    last_accessed = Column(DateTime, default=datetime.datetime)
-    created_at = Column(DateTime)
+    # last_accessed = Column(DateTime, default=datetime.datetime)
+    # created_at = Column(DateTime)
 
     vendor_comapny = relationship("Vendor", back_populates="vendor")
 
@@ -50,5 +50,5 @@ class VendorNotification(Base):
     title = Column(String, nullable=False)
     notification = Column(String, nullable=False)
     checked = Column(Boolean)
-    created_at = Column(DateTime)
-    checked_at = Column(DateTime)
+    # created_at = Column(DateTime)
+    # checked_at = Column(DateTime)

@@ -1,4 +1,4 @@
-from db.repository.vendor import create_new_vendor, get_vendor_by_email, get_vendor_by_id, get_vendors, create_vendor_notification, get_vendor_notification_by_id, get_vendor_notifications
+from db.repository.vendor import create_new_vendor, get_vendor_by_company_id, get_vendor_by_email, get_vendor_by_id, get_vendors, create_vendor_notification, get_vendor_notification_by_id, get_vendor_notifications, get_vendor_by_username
 from db.session import get_db, engine
 from fastapi import APIRouter, HTTPException
 from fastapi import Depends
@@ -14,9 +14,16 @@ router = APIRouter()
 
 @router.post("/", response_model=ShowVendor)
 def create_vendor(vendor: VendorCreate, db: Session = Depends(get_db)):
-    db_user = get_vendor_by_email(db=db, email=vendor.email)
-    if db_user:
+    db_vendor = get_vendor_by_email(db=db, email=vendor.email)
+    if db_vendor:
         raise HTTPException(status_code=400, detail="Email already registered")
+    db_vendor_username = get_vendor_by_username(db=db, username=vendor.username)
+    if db_vendor_username:
+        raise HTTPException(status_code=400, detail="Username already registered")
+    # db_vendor_company_id = get_vendor_by_company_id(db=db, vendor_company_id=vendor.vendor_company_id)
+    # if db_vendor_company_id:
+    #     raise HTTPException(status_code=400, detail="Comapny ID already registered")
+    # else:
     vendor = create_new_vendor(vendor=vendor, db=db)
     return vendor
 

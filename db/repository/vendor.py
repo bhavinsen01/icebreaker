@@ -13,7 +13,7 @@ def create_new_vendor(vendor: VendorCreate, db: Session):
         hashed_password=Hasher.get_password_hash(vendor.password),
         vendor_company_id = vendor.vendor_company_id,
         roll = vendor.roll,
-        created_at= vendor.created_at,
+        # created_at= vendor.created_at,
         is_active = True
     )
     db.add(vendor)
@@ -23,6 +23,12 @@ def create_new_vendor(vendor: VendorCreate, db: Session):
 
 def get_vendor_by_email(db: Session, email: str):
     return db.query(Vendor).filter(Vendor.email == email).first()
+
+def get_vendor_by_username(db: Session, username: str):
+    return db.query(Vendor).filter(Vendor.username == username).first()
+
+def get_vendor_by_company_id(db: Session, vendor_company_id: int):
+    return db.query(Vendor).filter(Vendor.vendor_company_id == vendor_company_id).first()
 
 def get_vendor_by_id(vendor_id: int, db: Session):
     return db.query(Vendor).filter(Vendor.id == vendor_id).first()
@@ -46,8 +52,8 @@ def create_vendor_company(vendor_company: VendorCompanyCreate, db:Session):
         business_hours_to = vendor_company.business_hours_to,
         business_title = vendor_company.business_title,
         busienss_description = vendor_company.busienss_description,
-        last_accessed = vendor_company.last_accessed,
-        created_at = vendor_company.created_at
+        # last_accessed = vendor_company.last_accessed,
+        # created_at = vendor_company.created_at
     )
     db.add(vendor_company)
     db.commit()
@@ -74,8 +80,8 @@ def create_vendor_notification(vendor_notification: CreateVendorNotification, db
         title = vendor_notification.title,
         notification = vendor_notification.notification,
         checked = vendor_notification.checked,
-        created_at = vendor_notification.created_at,
-        checked_at = vendor_notification.checked_at
+        # created_at = vendor_notification.created_at,
+        # checked_at = vendor_notification.checked_at
     )
     db.add(vendor_notification)
     db.commit()

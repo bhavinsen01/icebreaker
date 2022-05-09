@@ -17,3 +17,6 @@ def get_user_by_email(db: Session, email: str):
 
 def get_user_by_mobile(db: Session, mobile: str):
     return db.query(User).filter(User.mobile == mobile).first()
+
+def get_user_by_username(db: Session, username: str):
+    return db.query(User).filter(User.username == username).first()

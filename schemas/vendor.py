@@ -11,7 +11,7 @@ class VendorCreate(BaseModel):
     password: str
     vendor_company_id: int
     roll:int
-    created_at: datetime
+    # created_at: datetime
 
 
 class ShowVendor(BaseModel):
@@ -23,7 +23,7 @@ class ShowVendor(BaseModel):
     is_active: bool
     vendor_company_id: int
     roll:int
-    created_at: datetime
+    # created_at: datetime
 
 
     class Config:
@@ -55,8 +55,8 @@ class VendorCompanyCreate(BaseModel):
     business_hours_to: str
     business_title: str
     busienss_description: str
-    last_accessed: datetime
-    created_at: datetime
+    # last_accessed: datetime
+    # created_at: datetime
 
 class ShowVendorCompany(BaseModel):
     id: int
@@ -74,8 +74,8 @@ class ShowVendorCompany(BaseModel):
     business_hours_to: str
     business_title: str
     busienss_description: str
-    last_accessed: datetime
-    created_at: datetime
+    # last_accessed: datetime
+    # created_at: datetime
 
     class Config:
         orm_mode = True
@@ -96,7 +96,7 @@ class VendorCompanyUpdate(BaseModel):
     business_hours_to: Optional[str] = None
     business_title: Optional[str] = None
     busienss_description: Optional[str] = None
-    last_accessed: Optional[datetime] = None
+    # last_accessed: Optional[datetime] = None
 
 
 class CreateVendorNotification(BaseModel):
@@ -104,8 +104,8 @@ class CreateVendorNotification(BaseModel):
     title: str
     notification: str
     checked: bool
-    created_at: datetime
-    checked_at: datetime
+    # created_at: datetime
+    # checked_at: datetime
 
 class ShowVendorNotification(BaseModel):
     id: int
@@ -124,5 +124,5 @@ class UpdateVendorNotification(BaseModel):
     title: Optional[str] = None
     notification: Optional[str] = None
     checked: Optional[bool] = None
-    created_at: Optional[datetime] = None
-    checked_at: Optional[datetime] = None
+    # created_at: Optional[datetime] = None
+    # checked_at: Optional[datetime] = None
