@@ -38,18 +38,28 @@ def read_users(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     return users
 
 @router.patch("/{user_id}", response_model=ShowUser)
-def update_user(user_id: int, user: UpdateUser):
+def update_user(user_id: int, user: UpdateUser, db: Session = Depends(get_db)):
     with Session(engine) as session:
-        db_user = session.get(User, user_id)
-        if not db_user:
-            raise HTTPException(status_code=404, detail="User not found")
-        user_update = user.dict(exclude_unset=True)
-        for key, value in user_update.items():
-            setattr(db_user, key, value)
-        session.add(db_user)
-        session.commit()
-        session.refresh(db_user)
-        return db_user
+        db_user = get_user_by_email(db=db, email=user.email)
+        if db_user:
+            raise HTTPException(status_code=400, detail="Email already registered")
+        db_user_mobile = get_user_by_mobile(db=db, mobile=user.mobile)
+        if db_user_mobile:
+            raise HTTPException(status_code=400, detail="Mobile number already registered")
+        db_user_username = get_user_by_username(db=db, username=user.username)
+        if db_user_username:
+            raise HTTPException(status_code=400, detail="Username already registered")
+        else: 
+            db_user = session.get(User, user_id)
+            if not db_user:
+                raise HTTPException(status_code=404, detail="User not found")
+            user_update = user.dict(exclude_unset=True)
+            for key, value in user_update.items():
+                setattr(db_user, key, value)
+            session.add(db_user)
+            session.commit()
+            session.refresh(db_user)
+            return db_user
 
 @router.delete("/delete/{user_id}")
 def delete_user(user_id: int):
