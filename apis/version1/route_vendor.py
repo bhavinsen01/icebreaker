@@ -10,7 +10,7 @@ from db.models.vendor import Vendor, VendorNotification
 router = APIRouter()
 
 
-# <-----------------------------VENDOR MEMBER----------------------------->
+# <-----------------------------VENDOr MEMBER----------------------------->
 
 @router.post("/", response_model=ShowVendor)
 def create_vendor(vendor: VendorCreate, db: Session = Depends(get_db)):
@@ -72,7 +72,7 @@ def delete_vendor(vendor_id: int):
         return {"Vendor": "Vendor Deleted Successfully"}
 
 
-# <-----------------------------VENDOR NOTIFICATION----------------------------->
+# <-----------------------------VENDOr NOTIFICATION----------------------------->
 
 @router.post("/notification", response_model=ShowVendorNotification)
 def create_vendor_notifications(vendor_notification: CreateVendorNotification, db: Session = Depends(get_db)):
